@@ -64,10 +64,6 @@
     if (i < 0) { i = 0; }
     if (i > total - 1) { i = total - 1; }
     if (i === current && slides[i].classList.contains("is-active")) { return; }
-    /* sentido da transição 3D: avanço gira para um lado, volta espelha */
-    var back = i < current;
-    var dirChanged = back !== stage.classList.contains("dir-back");
-    if (dirChanged) { stage.classList.toggle("dir-back", back); }
     /* congela slides e elementos, commita tudo num reflow só e libera:
        a partir daí cada transição parte do estado-base correto */
     slides.forEach(function (sl) { sl.style.transition = "none"; });

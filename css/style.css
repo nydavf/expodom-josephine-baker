@@ -55,37 +55,23 @@ i,em{font-style:italic}
   width:1600px;height:900px;
   transform:translate(-50%,-50%) scale(1);
   transform-origin:center center;
-  perspective:1500px;
-  perspective-origin:50% 50%;
 }
 
-/* ---------- slides (transição 3D estilo Canva: quem sai recua no espaço,
-   quem entra voa da profundidade até a frente; sentido espelhado ao voltar) ---------- */
+/* ---------- slides (transição com profundidade: quem sai recua, quem entra aproxima) ---------- */
 .slide{
   position:absolute;inset:0;
   opacity:0;visibility:hidden;
-  transform:scale(1.04) translateZ(-320px) rotateY(15deg);
-  backface-visibility:hidden;
-  transition:opacity .45s ease, transform .70s cubic-bezier(.2,.7,.3,1), visibility 0s linear .72s;
-  z-index:1;
+  transform:scale(1.035);
+  transition:opacity .42s ease, transform .62s cubic-bezier(.2,.7,.3,1), visibility 0s linear .64s;
 }
 .slide.is-leaving{
   opacity:0;visibility:visible;
-  transform:scale(.955) translateZ(-260px) rotateY(-11deg);
-  transition:opacity .42s ease, transform .70s cubic-bezier(.2,.7,.3,1), visibility 0s;
-  z-index:1;
+  transform:scale(.962);
+  transition:opacity .40s ease, transform .62s cubic-bezier(.2,.7,.3,1), visibility 0s;
 }
 .slide.is-active{
   opacity:1;visibility:visible;transform:none;
-  transition:opacity .45s ease, transform .70s cubic-bezier(.2,.7,.3,1), visibility 0s;
-  z-index:3;
-}
-/* navegação para trás: giro espelhado (entra pela esquerda, sai para a direita) */
-.stage.dir-back .slide:not(.is-active):not(.is-leaving){
-  transform:scale(1.04) translateZ(-320px) rotateY(-15deg);
-}
-.stage.dir-back .slide.is-leaving{
-  transform:scale(.955) translateZ(-260px) rotateY(11deg);
+  transition:opacity .42s ease, transform .62s cubic-bezier(.2,.7,.3,1), visibility 0s;
 }
 
 .sheet{
@@ -727,19 +713,15 @@ i,em{font-style:italic}
 .credits{font:400 13px/1.55 var(--sans);color:rgba(243,237,225,.58)}
 
 /* ============================================================
-   animações de entrada (3D sutil: o elemento "ergue" do plano
-   com rotação no eixo X, como os reveals do Canva)
+   animações de entrada (discretas)
    ============================================================ */
 .fx{
-  opacity:0;transform:perspective(1000px) translateY(26px) rotateX(9deg);
-  transform-origin:50% 100%;
-  transition:opacity .6s ease, transform .75s cubic-bezier(.2,.7,.3,1);
+  opacity:0;transform:translateY(16px);
+  transition:opacity .55s ease, transform .6s cubic-bezier(.2,.7,.3,1);
 }
 .slide.is-active .fx{opacity:1;transform:none}
-.fx-zoom{scale:.94;transition:opacity .6s ease, transform .75s cubic-bezier(.2,.7,.3,1), scale .8s cubic-bezier(.2,.7,.3,1)}
+.fx-zoom{scale:.985;transition:opacity .55s ease, transform .6s cubic-bezier(.2,.7,.3,1), scale .7s cubic-bezier(.2,.7,.3,1)}
 .slide.is-active .fx-zoom{scale:none}
-/* fotos entram girando levemente no eiso Y (vão mais fundo que o texto) */
-.fx.photo{transform:perspective(1200px) translateY(30px) rotateX(6deg) rotateY(8deg)}
 
 /* flutuação sutil — anima `translate` (não `transform`) para não brigar com .fx */
 @keyframes floaty{
