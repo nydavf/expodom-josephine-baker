@@ -742,7 +742,7 @@ i,em{font-style:italic}
   background:rgba(18,19,23,.92);
   border:1px solid rgba(201,168,96,.35);
   border-radius:999px;padding:6px 10px;
-  z-index:50;backdrop-filter:blur(6px);
+  z-index:50;
   transition:opacity .3s ease;
 }
 .ui-btn{
